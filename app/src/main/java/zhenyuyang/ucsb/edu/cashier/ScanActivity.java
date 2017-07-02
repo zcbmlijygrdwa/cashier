@@ -40,7 +40,7 @@ public class ScanActivity extends AppCompatActivity implements Client.onServerRe
             @Override
             public void onClick(View v) {
 
-                myClient = new Client("169.231.184.54", 6789,((EditText)findViewById(R.id.editText)).getText().toString());
+                myClient = new Client(SettingsManager.getInstance().getServerAddress(), SettingsManager.getInstance().getServerPort(),((EditText)findViewById(R.id.editText)).getText().toString());
                 myClient.setOnServerRespondedListener(activity);
                 myClient.execute();
             }
@@ -59,7 +59,7 @@ public class ScanActivity extends AppCompatActivity implements Client.onServerRe
                 //query bar code from the server
                 //String query  = "fetch:"+lastText;
                 String query  = "sell:"+lastText;
-                myClient = new Client("169.231.184.54", 6789,query);
+                myClient = new Client(SettingsManager.getInstance().getServerAddress(), SettingsManager.getInstance().getServerPort(),query);
                 myClient.setOnServerRespondedListener(activity);
                 myClient.execute();
             }

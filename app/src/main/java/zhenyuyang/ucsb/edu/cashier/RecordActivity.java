@@ -47,7 +47,7 @@ public class RecordActivity extends AppCompatActivity implements Client.onServer
                 String itemName = ((EditText)findViewById(R.id.editText_newName)).getText().toString();
                 String itemPrice = ((EditText)findViewById(R.id.editText_newPrice)).getText().toString();
                 String query  = "add:"+itemID+","+itemName+","+itemPrice;
-                myClient = new Client("169.231.184.54", 6789,query);
+                myClient = new Client(SettingsManager.getInstance().getServerAddress(), SettingsManager.getInstance().getServerPort(),query);
                 myClient.setOnServerRespondedListener(activity);
                 myClient.execute();
                 button_submit_new_item.setEnabled(false);
