@@ -51,9 +51,9 @@ public class Client extends AsyncTask<Void, Void, Void> {
 
 
             toServerSentence = queryID+"\n";
-            System.out.println("Received: " + toServerSentence);
+            System.out.println("toServerSentence: " + toServerSentence);
             DataOutputStream outToClient = new DataOutputStream(socket.getOutputStream());
-            outToClient.writeBytes(toServerSentence);
+            outToClient.writeUTF(toServerSentence);
 
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(
                     1024);
@@ -68,7 +68,7 @@ public class Client extends AsyncTask<Void, Void, Void> {
 
             while ((bytesRead = inputStream.read(buffer)) != -1) {
                 byteArrayOutputStream.write(buffer, 0, bytesRead);
-                response += byteArrayOutputStream.toString("UTF-8");
+                response += byteArrayOutputStream.toString("GBK");
                 Log.i("Client", "response = " + response);
             }
         } catch (UnknownHostException e) {
