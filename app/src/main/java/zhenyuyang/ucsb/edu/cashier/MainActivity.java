@@ -73,77 +73,22 @@ public class MainActivity extends AppCompatActivity implements Client.onServerRe
             }
         });
 
-//        context = getApplicationContext();
-//        activity = this;
-//
-//        textView_response = (TextView)findViewById(R.id.textView_response);
-
-
-
-        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.button_scanActivity).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-//                myClient = new Client("169.231.184.54", 6789,((EditText)findViewById(R.id.editText)).getText().toString());
-//                myClient.setOnServerRespondedListener(activity);
-//                myClient.execute();
                 Intent intent = new Intent(getApplicationContext(),ScanActivity.class);
                 startActivity(intent);
             }
         });
 
-
-
-
-
-//        barcodeView = (BarcodeView) findViewById(R.id.barcode_scanner);
-//
-//        barcodeView.decodeContinuous(callback);
-//
-//        beepManager = new BeepManager(this);
-
-
-
-
-//        integrator.setBeepEnabled(true);
-//        integrator.setOrientationLocked(false);
-//        integrator.initiateScan();
-
+        findViewById(R.id.button_recordActivity).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),RecordActivity.class);
+                startActivity(intent);
+            }
+        });
     }
-
-//    private BarcodeCallback callback = new BarcodeCallback() {
-//        @Override
-//        public void barcodeResult(BarcodeResult result) {
-//            if(result.getText() == null || result.getText().equals(lastText)) {
-//                // Prevent duplicate scans
-//                return;
-//            }
-//
-//            lastText = result.getText();
-//            ((TextView)findViewById(R.id.code_info)).setText(result.getText());
-//
-//
-//            //query bar code from the server
-//            String query  = "fetch:"+lastText;
-//            myClient = new Client("169.231.184.54", 6789,query);
-//            myClient.setOnServerRespondedListener(activity);
-//            myClient.execute();
-//
-//
-//
-//            //Added preview of scanned barcode
-//            //ImageView imageView = (ImageView) findViewById(R.id.barcodePreview);
-//            //imageView.setImageBitmap(result.getBitmapWithResultPoints(Color.YELLOW));
-//        }
-//
-//        @Override
-//        public void possibleResultPoints(List<ResultPoint> resultPoints) {
-//        }
-//    };
-
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

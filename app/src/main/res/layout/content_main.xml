@@ -9,18 +9,16 @@
     android:orientation="vertical"
     tools:showIn="@layout/activity_main">
 
-
-
-
-
-
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_scanActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="126dp"
-        tools:layout_editor_absoluteY="62dp" />
+        android:text="Scan" />
 
+    <Button
+        android:id="@+id/button_recordActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Record" />
 
 </LinearLayout>

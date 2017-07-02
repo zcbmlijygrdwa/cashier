@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="zhenyuyang.ucsb.edu.cashier.RecordActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/code_info"
+        android:textSize="20sp"
+        android:text="Nothing to read." />
+
+    <com.journeyapps.barcodescanner.BarcodeView
+        android:layout_width="320dp"
+        android:layout_height="240dp"
+        android:id="@+id/barcode_scanner"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/colorAccent"
+            android:text="New item ID" />
+        <EditText
+            android:id="@+id/editText_newID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="new ID"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/colorAccent"
+            android:text="New item name" />
+        <EditText
+            android:id="@+id/editText_newName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="new name"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/colorAccent"
+            android:text="New item price" />
+        <EditText
+            android:id="@+id/editText_newPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="new price" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_submit_new_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="manual query"
+        tools:layout_editor_absoluteX="126dp"
+        tools:layout_editor_absoluteY="62dp" />
+
+</LinearLayout>
