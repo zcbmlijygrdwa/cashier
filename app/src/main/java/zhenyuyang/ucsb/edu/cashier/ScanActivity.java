@@ -57,7 +57,8 @@ public class ScanActivity extends AppCompatActivity implements Client.onServerRe
                 ((TextView)findViewById(R.id.code_info)).setText(result.getText());
 
                 //query bar code from the server
-                String query  = "fetch:"+lastText;
+                //String query  = "fetch:"+lastText;
+                String query  = "sell:"+lastText;
                 myClient = new Client("169.231.184.54", 6789,query);
                 myClient.setOnServerRespondedListener(activity);
                 myClient.execute();
