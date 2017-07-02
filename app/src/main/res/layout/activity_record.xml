@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/code_info"
+        android:id="@+id/textView_response"
         android:textSize="20sp"
         android:text="Nothing to read." />
 

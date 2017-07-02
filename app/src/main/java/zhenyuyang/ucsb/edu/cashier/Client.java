@@ -74,11 +74,13 @@ public class Client extends AsyncTask<Void, Void, Void> {
         } catch (UnknownHostException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-            response = "UnknownHostException: " + e.toString();
+            //response = "UnknownHostException: " + e.toString();
+            response = "Network error! Please try again.";
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-            response = "IOException: " + e.toString();
+           // response = "IOException: " + e.toString();
+            response = "Network error! Please try again.";
         } finally {
             Log.i("Client","socket2 = "+socket);
             if (socket != null) {

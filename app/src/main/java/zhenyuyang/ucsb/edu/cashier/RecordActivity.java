@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -24,7 +25,8 @@ public class RecordActivity extends AppCompatActivity implements Client.onServer
     private RecordActivity activity;
     private Client myClient;
 
-    //private TextView textView_response;
+    private TextView textView_response;
+    private Button button_submit_new_item;
 
     private BarcodeCallback callback;
     @Override
@@ -33,9 +35,11 @@ public class RecordActivity extends AppCompatActivity implements Client.onServer
         setContentView(R.layout.activity_record);
 
         activity = this;
-        //textView_response = (TextView)findViewById(R.id.textView_response);
+        textView_response = (TextView)findViewById(R.id.textView_response);
 
-        findViewById(R.id.button_submit_new_item).setOnClickListener(new View.OnClickListener() {
+        button_submit_new_item = (Button) findViewById(R.id.button_submit_new_item);
+
+        button_submit_new_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //query bar code from the server
@@ -46,6 +50,7 @@ public class RecordActivity extends AppCompatActivity implements Client.onServer
                 myClient = new Client("169.231.184.54", 6789,query);
                 myClient.setOnServerRespondedListener(activity);
                 myClient.execute();
+                button_submit_new_item.setEnabled(false);
             }
         });
 
@@ -74,12 +79,13 @@ public class RecordActivity extends AppCompatActivity implements Client.onServer
     public void onServerResponded(String response) {
 
         if(!response.equals("-1")) {
-           // textView_response.setText(response);
-            beepManager.playBeepSoundAndVibrate();
+            textView_response.setText(response);
         }
         else{
-           // textView_response.setText("Invalid request.");
+           textView_response.setText("A new item creation failed: Duplicated item");
         }
+        beepManager.playBeepSoundAndVibrate();
+        button_submit_new_item.setEnabled(true);
     }
 
 
