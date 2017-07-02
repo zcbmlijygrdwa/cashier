@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import com.google.zxing.ResultPoint;
@@ -24,9 +25,11 @@ public class ScanActivity extends AppCompatActivity implements Client.onServerRe
     private ScanActivity activity;
     private Client myClient;
 
+    private TextView textView_pick_number;
     private TextView textView_response;
-
+    private NumberPicker np;
     private BarcodeCallback callback;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,27 @@ public class ScanActivity extends AppCompatActivity implements Client.onServerRe
 
         activity = this;
         textView_response = (TextView)findViewById(R.id.textView_response);
+        textView_pick_number = (TextView)findViewById(R.id.textView_pick_number);
+        np = (NumberPicker) findViewById(R.id.np);
+
+        //Populate NumberPicker values from minimum and maximum value range
+        //Set the minimum value of NumberPicker
+        np.setMinValue(1);
+        //Specify the maximum value/number of NumberPicker
+        np.setMaxValue(15);
+
+        //Gets whether the selector wheel wraps when reaching the min/max value.
+        np.setWrapSelectorWheel(true);
+
+        //Set a value change listener for NumberPicker
+        np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal){
+                //Display the newly selected number from picker
+                textView_pick_number.setText("Quantity : " + newVal);
+            }
+        });
+
 
         findViewById(R.id.button_manual_query).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +114,6 @@ public class ScanActivity extends AppCompatActivity implements Client.onServerRe
     @Override
     protected void onResume() {
         super.onResume();
-
         barcodeView.resume();
     }
 

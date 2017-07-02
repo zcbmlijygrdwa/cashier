@@ -1,61 +1,23 @@
 package zhenyuyang.ucsb.edu.cashier;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.util.SparseArray;
-import android.view.KeyEvent;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.vision.CameraSource;
-import com.google.android.gms.vision.Detector;
-import com.google.android.gms.vision.Frame;
-import com.google.android.gms.vision.barcode.Barcode;
-import com.google.android.gms.vision.barcode.BarcodeDetector;
-import com.google.zxing.ResultPoint;
-import com.google.zxing.client.android.BeepManager;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
-import com.journeyapps.barcodescanner.BarcodeCallback;
-import com.journeyapps.barcodescanner.BarcodeResult;
-import com.journeyapps.barcodescanner.BarcodeView;
 
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.OnPermissionDenied;
+import permissions.dispatcher.RuntimePermissions;
 
-import org.w3c.dom.Text;
-
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.Socket;
-import java.util.List;
-
-public class MainActivity extends AppCompatActivity implements Client.onServerRespondedListener {
-//    private BarcodeView barcodeView;
-//    private BeepManager beepManager;
-//    private String lastText;
-//    private Context context;
-//    private MainActivity activity;
-//    private Client myClient;
-//
-//    TextView textView_response;
+@RuntimePermissions
+public class MainActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +59,18 @@ public class MainActivity extends AppCompatActivity implements Client.onServerRe
             }
         });
 
+        MainActivityPermissionsDispatcher.getPermissionWithCheck(this);
 
+    }
+
+    @NeedsPermission(android.Manifest.permission.CAMERA)
+     void getPermission(){
+        Toast.makeText(this, "getPermission", Toast.LENGTH_SHORT).show();
+    }
+
+    @OnPermissionDenied(android.Manifest.permission.CAMERA)
+    void showDeniedForCamera() {
+        Toast.makeText(this, "R.string.permission_camera_denied", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -120,17 +93,5 @@ public class MainActivity extends AppCompatActivity implements Client.onServerRe
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onServerResponded(String response) {
-//
-//        if(!response.equals("-1")) {
-//            textView_response.setText(response);
-//            beepManager.playBeepSoundAndVibrate();
-//        }
-//        else{
-//            textView_response.setText("Invalid request.");
-//        }
     }
 }
