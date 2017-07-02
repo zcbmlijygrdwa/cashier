@@ -48,17 +48,14 @@ import java.net.Socket;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements Client.onServerRespondedListener {
-    IntentIntegrator integrator = new IntentIntegrator(this);
-
-    private static final String TAG = "ContinuousCaptureActivity";
-    private BarcodeView barcodeView;
-    private BeepManager beepManager;
-    private String lastText;
-    private Context context;
-    private MainActivity activity;
-    private Client myClient;
-
-    TextView textView_response;
+//    private BarcodeView barcodeView;
+//    private BeepManager beepManager;
+//    private String lastText;
+//    private Context context;
+//    private MainActivity activity;
+//    private Client myClient;
+//
+//    TextView textView_response;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,10 +73,10 @@ public class MainActivity extends AppCompatActivity implements Client.onServerRe
             }
         });
 
-        context = getApplicationContext();
-        activity = this;
-
-        textView_response = (TextView)findViewById(R.id.textView_response);
+//        context = getApplicationContext();
+//        activity = this;
+//
+//        textView_response = (TextView)findViewById(R.id.textView_response);
 
 
 
@@ -87,9 +84,11 @@ public class MainActivity extends AppCompatActivity implements Client.onServerRe
             @Override
             public void onClick(View v) {
 
-                myClient = new Client("169.231.184.54", 6789,((EditText)findViewById(R.id.editText)).getText().toString());
-                myClient.setOnServerRespondedListener(activity);
-                myClient.execute();
+//                myClient = new Client("169.231.184.54", 6789,((EditText)findViewById(R.id.editText)).getText().toString());
+//                myClient.setOnServerRespondedListener(activity);
+//                myClient.execute();
+                Intent intent = new Intent(getApplicationContext(),ScanActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -97,11 +96,11 @@ public class MainActivity extends AppCompatActivity implements Client.onServerRe
 
 
 
-        barcodeView = (BarcodeView) findViewById(R.id.barcode_scanner);
-
-        barcodeView.decodeContinuous(callback);
-
-        beepManager = new BeepManager(this);
+//        barcodeView = (BarcodeView) findViewById(R.id.barcode_scanner);
+//
+//        barcodeView.decodeContinuous(callback);
+//
+//        beepManager = new BeepManager(this);
 
 
 
@@ -112,83 +111,39 @@ public class MainActivity extends AppCompatActivity implements Client.onServerRe
 
     }
 
-    private BarcodeCallback callback = new BarcodeCallback() {
-        @Override
-        public void barcodeResult(BarcodeResult result) {
-            if(result.getText() == null || result.getText().equals(lastText)) {
-                // Prevent duplicate scans
-                return;
-            }
-
-            lastText = result.getText();
-            ((TextView)findViewById(R.id.code_info)).setText(result.getText());
-
-
-            //query bar code from the server
-            String query  = "fetch:"+lastText;
-            myClient = new Client("169.231.184.54", 6789,query);
-            myClient.setOnServerRespondedListener(activity);
-            myClient.execute();
-
-
-
-            //Added preview of scanned barcode
-            //ImageView imageView = (ImageView) findViewById(R.id.barcodePreview);
-            //imageView.setImageBitmap(result.getBitmapWithResultPoints(Color.YELLOW));
-        }
-
-        @Override
-        public void possibleResultPoints(List<ResultPoint> resultPoints) {
-        }
-    };
-
-
-
-//    // Get the results:
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-//        if(result != null) {
-//            if(result.getContents() == null) {
-//                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
-//            } else {
-//                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+//    private BarcodeCallback callback = new BarcodeCallback() {
+//        @Override
+//        public void barcodeResult(BarcodeResult result) {
+//            if(result.getText() == null || result.getText().equals(lastText)) {
+//                // Prevent duplicate scans
+//                return;
 //            }
-//        } else {
-//            super.onActivityResult(requestCode, resultCode, data);
+//
+//            lastText = result.getText();
+//            ((TextView)findViewById(R.id.code_info)).setText(result.getText());
+//
+//
+//            //query bar code from the server
+//            String query  = "fetch:"+lastText;
+//            myClient = new Client("169.231.184.54", 6789,query);
+//            myClient.setOnServerRespondedListener(activity);
+//            myClient.execute();
+//
+//
+//
+//            //Added preview of scanned barcode
+//            //ImageView imageView = (ImageView) findViewById(R.id.barcodePreview);
+//            //imageView.setImageBitmap(result.getBitmapWithResultPoints(Color.YELLOW));
 //        }
-//    }
+//
+//        @Override
+//        public void possibleResultPoints(List<ResultPoint> resultPoints) {
+//        }
+//    };
 
-    @Override
-    protected void onResume() {
-        super.onResume();
 
-        barcodeView.resume();
-    }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
 
-        barcodeView.pause();
-    }
-
-    public void pause(View view) {
-        barcodeView.pause();
-    }
-
-    public void resume(View view) {
-        barcodeView.resume();
-    }
-
-    public void triggerScan(View view) {
-        barcodeView.decodeSingle(callback);
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        return barcodeView.onKeyDown(keyCode, event) || super.onKeyDown(keyCode, event);
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -214,13 +169,13 @@ public class MainActivity extends AppCompatActivity implements Client.onServerRe
 
     @Override
     public void onServerResponded(String response) {
-
-        if(!response.equals("-1")) {
-            textView_response.setText(response);
-            beepManager.playBeepSoundAndVibrate();
-        }
-        else{
-            textView_response.setText("Invalid request.");
-        }
+//
+//        if(!response.equals("-1")) {
+//            textView_response.setText(response);
+//            beepManager.playBeepSoundAndVibrate();
+//        }
+//        else{
+//            textView_response.setText("Invalid request.");
+//        }
     }
 }
