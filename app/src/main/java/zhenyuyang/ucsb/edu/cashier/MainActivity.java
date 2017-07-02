@@ -88,6 +88,16 @@ public class MainActivity extends AppCompatActivity implements Client.onServerRe
                 startActivity(intent);
             }
         });
+
+        findViewById(R.id.button_settingsActivity).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     @Override
