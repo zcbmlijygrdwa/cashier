@@ -24,6 +24,7 @@ public class ScanActivity extends AppCompatActivity implements Client.onServerRe
     private Context context;
     private ScanActivity activity;
     private Client myClient;
+    private int sellQuantity = 0;
 
     private TextView textView_pick_number;
     private TextView textView_response;
@@ -56,6 +57,7 @@ public class ScanActivity extends AppCompatActivity implements Client.onServerRe
             public void onValueChange(NumberPicker picker, int oldVal, int newVal){
                 //Display the newly selected number from picker
                 textView_pick_number.setText("Quantity : " + newVal);
+                sellQuantity = newVal;
             }
         });
 
@@ -82,7 +84,7 @@ public class ScanActivity extends AppCompatActivity implements Client.onServerRe
 
                 //query bar code from the server
                 //String query  = "fetch:"+lastText;
-                String query  = "sell:"+lastText;
+                String query  = "sell:"+lastText+","+sellQuantity;
                 myClient = new Client(SettingsManager.getInstance().getServerAddress(), SettingsManager.getInstance().getServerPort(),query);
                 myClient.setOnServerRespondedListener(activity);
                 myClient.execute();
