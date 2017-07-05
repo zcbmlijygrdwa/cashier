@@ -10,15 +10,23 @@ import java.util.UUID;
 
 public class Transaction {
     private String transactionNumber;
-    private Item item;
+    private String itemID;
     private String time;
     private int quantity;
     private float priceSell;
 
-    public Transaction(Item item,int quantity,float priceSell ){
+    public Transaction(String itemID,int quantity,float priceSell ){
         transactionNumber = UUID.randomUUID().toString();
-        this.item = item;
+        this.itemID = itemID;
         time = getTimaStamp();
+        this.quantity = quantity;
+        this.priceSell = priceSell;
+    }
+
+    public Transaction(String transactionNumber,String itemID,int quantity,float priceSell,String time){
+        this.transactionNumber = transactionNumber;
+        this.itemID = itemID;
+        this.time = time;
         this.quantity = quantity;
         this.priceSell = priceSell;
     }
@@ -30,5 +38,17 @@ public class Transaction {
         String timeStamp = sdf.format(cal.getTime());
 //        System.out.println( "timeStamp = "+timeStamp );
         return timeStamp;
+    }
+
+    public String getTransactionNumber(){
+        return transactionNumber;
+    }
+
+    public String toTransactionString(){
+        return transactionNumber+","+itemID+","+quantity+","+priceSell+","+time;
+    }
+
+    public String toString(){
+        return "transactionNumber = "+transactionNumber+",itemID = "+itemID+",quantity = "+quantity+",priceSell = "+priceSell+",time = "+time;
     }
 }

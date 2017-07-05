@@ -17,6 +17,11 @@ import com.journeyapps.barcodescanner.BarcodeView;
 
 import java.util.List;
 
+import pl.polak.clicknumberpicker.ClickNumberPickerListener;
+import pl.polak.clicknumberpicker.ClickNumberPickerView;
+import pl.polak.clicknumberpicker.PickerClickType;
+
+
 public class ScanActivity extends AppCompatActivity implements Client.onServerRespondedListener{
     private BarcodeView barcodeView;
     private BeepManager beepManager;
@@ -28,6 +33,13 @@ public class ScanActivity extends AppCompatActivity implements Client.onServerRe
 
     private TextView textView_pick_number;
     private TextView textView_response;
+    private TextView textView_response_item_price_in;
+    private TextView textView_response_item_price_standard;
+
+    private ClickNumberPickerView clickNumberPickerView_sell_price;
+    private ClickNumberPickerView clickNumberPickerView_sell_quantity;
+
+
     private NumberPicker np;
     private BarcodeCallback callback;
 
@@ -39,36 +51,51 @@ public class ScanActivity extends AppCompatActivity implements Client.onServerRe
 
         activity = this;
         textView_response = (TextView)findViewById(R.id.textView_response);
-        textView_pick_number = (TextView)findViewById(R.id.textView_pick_number);
-        np = (NumberPicker) findViewById(R.id.np);
+        textView_response_item_price_in = (TextView)findViewById(R.id.textView_response_item_price_in);
+        textView_response_item_price_standard = (TextView)findViewById(R.id.textView_response_item_price_standard);
+        //textView_pick_number = (TextView)findViewById(R.id.textView_pick_number);
 
-        //Populate NumberPicker values from minimum and maximum value range
-        //Set the minimum value of NumberPicker
-        np.setMinValue(1);
-        //Specify the maximum value/number of NumberPicker
-        np.setMaxValue(15);
 
-        //Gets whether the selector wheel wraps when reaching the min/max value.
-        np.setWrapSelectorWheel(true);
 
-        //Set a value change listener for NumberPicker
-        np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal){
-                //Display the newly selected number from picker
-                textView_pick_number.setText("Quantity : " + newVal);
-                sellQuantity = newVal;
-            }
-        });
+        clickNumberPickerView_sell_quantity = (ClickNumberPickerView)findViewById(R.id.clickNumberPickerView_sell_quantity);
+
+        clickNumberPickerView_sell_price = (ClickNumberPickerView)findViewById(R.id.clickNumberPickerView_sell_price);
+
+
+//        //Populate NumberPicker values from minimum and maximum value range
+//        //Set the minimum value of NumberPicker
+//        np.setMinValue(1);
+//        //Specify the maximum value/number of NumberPicker
+//        np.setMaxValue(15);
+//
+//        np.setValue(5);
+//
+//        //Gets whether the selector wheel wraps when reaching the min/max value.
+//        np.setWrapSelectorWheel(true);
+//
+//        //Set a value change listener for NumberPicker
+//        np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+//            @Override
+//            public void onValueChange(NumberPicker picker, int oldVal, int newVal){
+//                //Display the newly selected number from picker
+//                textView_pick_number.setText("Quantity : " + newVal);
+//                sellQuantity = newVal;
+//            }
+//        });
 
 
         findViewById(R.id.button_manual_query).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                myClient = new Client(SettingsManager.getInstance().getServerAddress(), SettingsManager.getInstance().getServerPort(),((EditText)findViewById(R.id.editText)).getText().toString());
-                myClient.setOnServerRespondedListener(activity);
-                myClient.execute();
+
+                Item item = ItemManager.getInstance().findItemById("11226",getApplicationContext());
+                TransactionManager.getInstance().createTransaction(item.getID(),(int)clickNumberPickerView_sell_quantity.getValue(),clickNumberPickerView_sell_price.getValue(),getApplicationContext());
+
+                beepManager.playBeepSoundAndVibrate();
+//                myClient = new Client(SettingsManager.getInstance().getServerAddress(), SettingsManager.getInstance().getServerPort(),((EditText)findViewById(R.id.editText)).getText().toString());
+//                myClient.setOnServerRespondedListener(activity);
+//                myClient.execute();
             }
         });
 
@@ -80,14 +107,14 @@ public class ScanActivity extends AppCompatActivity implements Client.onServerRe
                     return;
                 }
                 lastText = result.getText();
-                ((TextView)findViewById(R.id.code_info)).setText(result.getText());
+                ((TextView)findViewById(R.id.textView_response)).setText(result.getText());
 
-                //query bar code from the server
-                //String query  = "fetch:"+lastText;
-                String query  = "sell:"+lastText+","+sellQuantity;
-                myClient = new Client(SettingsManager.getInstance().getServerAddress(), SettingsManager.getInstance().getServerPort(),query);
-                myClient.setOnServerRespondedListener(activity);
-                myClient.execute();
+//                //query bar code from the server
+//                //String query  = "fetch:"+lastText;
+//                String query  = "sell:"+lastText+","+sellQuantity;
+//                myClient = new Client(SettingsManager.getInstance().getServerAddress(), SettingsManager.getInstance().getServerPort(),query);
+//                myClient.setOnServerRespondedListener(activity);
+//                myClient.execute();
             }
             @Override
             public void possibleResultPoints(List<ResultPoint> resultPoints) {
@@ -98,6 +125,9 @@ public class ScanActivity extends AppCompatActivity implements Client.onServerRe
         barcodeView = (BarcodeView) findViewById(R.id.barcode_scanner);
         barcodeView.decodeContinuous(callback);
         beepManager = new BeepManager(this);
+
+
+        fakeDetection();
     }
 
     @Override
@@ -141,5 +171,13 @@ public class ScanActivity extends AppCompatActivity implements Client.onServerRe
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         return barcodeView.onKeyDown(keyCode, event) || super.onKeyDown(keyCode, event);
+    }
+
+    public void fakeDetection(){
+        textView_response.setText("11226");
+        Item item = ItemManager.getInstance().findItemById("11226",this);
+        textView_response_item_price_in.setText(item.getPriceIn()+"");
+        textView_response_item_price_standard.setText(item.getPriceStandard()+"");
+        clickNumberPickerView_sell_price.setPickerValue(item.getPriceStandard());
     }
 }

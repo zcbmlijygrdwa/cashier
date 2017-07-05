@@ -25,7 +25,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ID = "
+            android:text="ID: "
             android:textColor="@color/colorPrimary"
             android:textSize="16sp" />
         <TextView
@@ -44,7 +44,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Price in = "
+            android:text="Price in: "
             android:textColor="@color/colorPrimary"
             android:textSize="16sp" />
         <TextView
@@ -58,7 +58,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Price standard = "
+            android:text="Price standard: "
             android:textColor="@color/colorPrimary"
             android:textSize="16sp" />
         <TextView

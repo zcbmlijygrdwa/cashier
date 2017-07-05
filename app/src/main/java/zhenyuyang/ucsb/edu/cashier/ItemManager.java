@@ -53,7 +53,7 @@ public class ItemManager {
                 while ( (receiveString = bufferedReader.readLine()) != null ) {
                     line = receiveString;
                     String[] splits = line.split(",");
-                    Item item = new Item(splits[0],splits[1],Float.parseFloat(splits[2]),Float.parseFloat(splits[2]));
+                    Item item = new Item(splits[0],splits[1],Float.parseFloat(splits[2]),Float.parseFloat(splits[3]));
                     items.add(item);
                 }
                 inputStream.close();

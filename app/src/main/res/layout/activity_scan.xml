@@ -5,65 +5,124 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center_horizontal"
     tools:context="zhenyuyang.ucsb.edu.cashier.ScanActivity">
-    <TextView
-        android:id="@+id/textView_response"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="173dp" />
-
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ID" />
-    <Button
-        android:id="@+id/button_manual_query"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="manual query"
-        tools:layout_editor_absoluteX="126dp"
-        tools:layout_editor_absoluteY="62dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/code_info"
-        android:textSize="20sp"
-        android:text="Nothing to read."
-        android:layout_alignParentTop="true"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="0dp" />
 
 
+    <com.journeyapps.barcodescanner.BarcodeView
+        android:layout_width="320dp"
+        android:layout_height="240dp"
+        android:id="@+id/barcode_scanner"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
-
-        <com.journeyapps.barcodescanner.BarcodeView
-            android:layout_width="320dp"
-            android:layout_height="240dp"
-            android:id="@+id/barcode_scanner"
-            tools:layout_editor_absoluteY="0dp"
-            tools:layout_editor_absoluteX="0dp" />
-        <NumberPicker
-            android:id="@+id/np"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-
-    </LinearLayout>
     <TextView
-        android:id="@+id/textView_pick_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:textSize="25dp"
-        android:text="Select a number..."
-        />
+        android:text="Barcode detected:"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp" />
+    <TextView
+        android:id="@+id/textView_response"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Barcode" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price in: "
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/textView_response_item_price_in"
+            android:layout_width="wrap_content"
+            android:layout_height="26dip"
+            android:layout_weight="1"
+            android:text="Description"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price standard: "
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/textView_response_item_price_standard"
+            android:layout_width="wrap_content"
+            android:layout_height="26dip"
+            android:layout_weight="1"
+            android:text="Description"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="Sell Price:"
+                />
+
+            <pl.polak.clicknumberpicker.ClickNumberPickerView
+                android:id="@+id/clickNumberPickerView_sell_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:picker_corner_radius="10"
+                app:pickers_background_color="#3F51B5"
+                app:swipe_enabled="true"
+                app:value = "1"
+                app:min_value = "0"
+                app:max_value = "100"
+                app:step = "0.5"
+                app:integer_priority = "true"
+                app:value_background_color="#5C6BC0"
+                app:value_text_color="@android:color/white"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="Sell Quantity:"
+                />
+
+
+
+            <pl.polak.clicknumberpicker.ClickNumberPickerView
+                android:id="@+id/clickNumberPickerView_sell_quantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:picker_corner_radius="10"
+                app:pickers_background_color="#3F51B5"
+                app:swipe_enabled="true"
+                app:value = "1"
+                app:min_value = "1"
+                app:max_value = "100"
+                app:step = "1"
+                app:integer_priority = "true"
+                app:value_background_color="#5C6BC0"
+                app:value_text_color="@android:color/white"/>
+
+        </LinearLayout>
+    <Button
+        android:id="@+id/button_manual_query"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit" />
 
 </LinearLayout>

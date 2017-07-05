@@ -42,15 +42,15 @@ public class RecordActivity extends AppCompatActivity implements Client.onServer
         button_submit_new_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //query bar code from the server
-                String itemID = ((EditText)findViewById(R.id.editText_newID)).getText().toString();
-                String itemName = ((EditText)findViewById(R.id.editText_newName)).getText().toString();
-                String itemPrice = ((EditText)findViewById(R.id.editText_newPrice)).getText().toString();
-                String query  = "add:"+itemID+","+itemName+","+itemPrice;
-                myClient = new Client(SettingsManager.getInstance().getServerAddress(), SettingsManager.getInstance().getServerPort(),query);
-                myClient.setOnServerRespondedListener(activity);
-                myClient.execute();
-                button_submit_new_item.setEnabled(false);
+//                //query bar code from the server
+//                String itemID = ((EditText)findViewById(R.id.editText_newID)).getText().toString();
+//                String itemName = ((EditText)findViewById(R.id.editText_newName)).getText().toString();
+//                String itemPrice = ((EditText)findViewById(R.id.editText_newPrice)).getText().toString();
+//                String query  = "add:"+itemID+","+itemName+","+itemPrice;
+//                myClient = new Client(SettingsManager.getInstance().getServerAddress(), SettingsManager.getInstance().getServerPort(),query);
+//                myClient.setOnServerRespondedListener(activity);
+//                myClient.execute();
+//                button_submit_new_item.setEnabled(false);
             }
         });
 
