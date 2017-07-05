@@ -1,16 +1,34 @@
 package zhenyuyang.ucsb.edu.cashier;
 
+import android.*;
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnPermissionDenied;
@@ -18,7 +36,7 @@ import permissions.dispatcher.RuntimePermissions;
 
 @RuntimePermissions
 public class MainActivity extends AppCompatActivity{
-
+//    private static List<Item> items;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +79,20 @@ public class MainActivity extends AppCompatActivity{
 
         MainActivityPermissionsDispatcher.getPermissionWithCheck(this);
 
+
+        //test zone
+
+//        items = new ArrayList<Item>();
+
+        ItemManager.getInstance().createItem("512,ytr,52.0,65.2\n",this);
+//        ItemManager.getInstance().createItem("513,ytr,52.0,65.2\n",this);
+//        Item item =  ItemManager.getInstance().findItemById("512",this);
+//        Log.i("Item","item = "+item);
+
+
+        //ItemManager.getInstance().deleteData(this);
+        ItemManager.getInstance().printAllItems(this);
+        //end of test zone
     }
 
     @NeedsPermission(android.Manifest.permission.CAMERA)
@@ -93,5 +125,13 @@ public class MainActivity extends AppCompatActivity{
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        // NOTE: delegate the permission handling to generated method
+        MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
+
     }
 }
