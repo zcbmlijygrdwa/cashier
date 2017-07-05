@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ID: "
-            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
             android:textSize="16sp" />
         <TextView
             android:id="@+id/textView_item_ID"
@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Price in: "
-            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
             android:textSize="16sp" />
         <TextView
             android:id="@+id/textView_priceIn"
@@ -59,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Price standard: "
-            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
             android:textSize="16sp" />
         <TextView
             android:id="@+id/textView_priceStandard"

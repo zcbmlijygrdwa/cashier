@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.zxing.ResultPoint;
 import com.google.zxing.client.android.BeepManager;
@@ -42,15 +43,23 @@ public class RecordActivity extends AppCompatActivity implements Client.onServer
         button_submit_new_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                //query bar code from the server
-//                String itemID = ((EditText)findViewById(R.id.editText_newID)).getText().toString();
-//                String itemName = ((EditText)findViewById(R.id.editText_newName)).getText().toString();
-//                String itemPrice = ((EditText)findViewById(R.id.editText_newPrice)).getText().toString();
-//                String query  = "add:"+itemID+","+itemName+","+itemPrice;
-//                myClient = new Client(SettingsManager.getInstance().getServerAddress(), SettingsManager.getInstance().getServerPort(),query);
-//                myClient.setOnServerRespondedListener(activity);
-//                myClient.execute();
-//                button_submit_new_item.setEnabled(false);
+
+
+                String itemID = ((EditText)findViewById(R.id.editText_newID)).getText().toString();
+                String itemName = ((EditText)findViewById(R.id.editText_newName)).getText().toString();
+                String newPriceIn = ((EditText)findViewById(R.id.editText_newPriceIn)).getText().toString();
+                String newPriceStandard = ((EditText)findViewById(R.id.editText_newPriceStandard)).getText().toString();
+
+                if((!itemID.isEmpty()&&!itemName.isEmpty()&&!newPriceIn.isEmpty()&&!newPriceStandard.isEmpty()&&
+                        (android.text.TextUtils.isDigitsOnly(newPriceIn))&&(android.text.TextUtils.isDigitsOnly(newPriceStandard)))&&
+                    (itemID.trim().length()>0)&&(itemName.trim().length()>0)&&(newPriceIn.trim().length()>0)&&(newPriceStandard.trim().length()>0)){
+                    String query = itemID + "," + itemName + "," + newPriceIn + "," + newPriceStandard;
+                    ItemManager.getInstance().createItem(query + "\n", getApplicationContext());
+                }
+                else {
+
+                    Toast.makeText(getApplicationContext(),"Please fill out all fields correctly.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

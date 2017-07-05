@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.zxing.ResultPoint;
 import com.google.zxing.client.android.BeepManager;
@@ -32,10 +33,10 @@ public class ScanActivity extends AppCompatActivity implements Client.onServerRe
     private int sellQuantity = 0;
 
     private TextView textView_pick_number;
-    private TextView textView_response;
+    private EditText textView_response;
     private TextView textView_response_item_price_in;
     private TextView textView_response_item_price_standard;
-
+    private TextView textView_item_name;
     private ClickNumberPickerView clickNumberPickerView_sell_price;
     private ClickNumberPickerView clickNumberPickerView_sell_quantity;
 
@@ -50,9 +51,10 @@ public class ScanActivity extends AppCompatActivity implements Client.onServerRe
         setContentView(R.layout.activity_scan);
 
         activity = this;
-        textView_response = (TextView)findViewById(R.id.textView_response);
+        textView_response = (EditText)findViewById(R.id.textView_response);
         textView_response_item_price_in = (TextView)findViewById(R.id.textView_response_item_price_in);
         textView_response_item_price_standard = (TextView)findViewById(R.id.textView_response_item_price_standard);
+        textView_item_name = (TextView)findViewById(R.id.textView_item_name);
         //textView_pick_number = (TextView)findViewById(R.id.textView_pick_number);
 
 
@@ -89,15 +91,38 @@ public class ScanActivity extends AppCompatActivity implements Client.onServerRe
             public void onClick(View v) {
 
 
-                Item item = ItemManager.getInstance().findItemById("11226",getApplicationContext());
-                TransactionManager.getInstance().createTransaction(item.getID(),(int)clickNumberPickerView_sell_quantity.getValue(),clickNumberPickerView_sell_price.getValue(),getApplicationContext());
+                Item item = ItemManager.getInstance().findItemById(textView_response.getText().toString(),getApplicationContext());
+                if(item!=null) {
+                    TransactionManager.getInstance().createTransaction(item.getID(), (int) clickNumberPickerView_sell_quantity.getValue(), clickNumberPickerView_sell_price.getValue(), getApplicationContext());
 
-                beepManager.playBeepSoundAndVibrate();
+                    beepManager.playBeepSoundAndVibrate();
 //                myClient = new Client(SettingsManager.getInstance().getServerAddress(), SettingsManager.getInstance().getServerPort(),((EditText)findViewById(R.id.editText)).getText().toString());
 //                myClient.setOnServerRespondedListener(activity);
 //                myClient.execute();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"Check-out failed, cannot find the item in database", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
+        findViewById(R.id.button_refresh_barcode).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Item item = ItemManager.getInstance().findItemById(textView_response.getText().toString(),getApplicationContext());
+                if(item!=null) {
+                textView_response_item_price_in.setText(item.getPriceIn()+"");
+                textView_response_item_price_standard.setText(item.getPriceStandard()+"");
+                clickNumberPickerView_sell_price.setPickerValue(item.getPriceStandard());
+                textView_item_name.setText(item.getName()+"");
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"Check-out failed, cannot find the item in database", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
 
         callback = new BarcodeCallback() {
             @Override
@@ -127,7 +152,7 @@ public class ScanActivity extends AppCompatActivity implements Client.onServerRe
         beepManager = new BeepManager(this);
 
 
-        fakeDetection();
+        //fakeDetection();
     }
 
     @Override
@@ -179,5 +204,6 @@ public class ScanActivity extends AppCompatActivity implements Client.onServerRe
         textView_response_item_price_in.setText(item.getPriceIn()+"");
         textView_response_item_price_standard.setText(item.getPriceStandard()+"");
         clickNumberPickerView_sell_price.setPickerValue(item.getPriceStandard());
+        textView_item_name.setText(item.getName()+"");
     }
 }

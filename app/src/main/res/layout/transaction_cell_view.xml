@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ID: "
-            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
             android:textSize="16sp" />
         <TextView
             android:id="@+id/textView_item_ID"
@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Time: "
-            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
             android:textSize="16sp" />
         <TextView
             android:id="@+id/textView_transaction_time"
@@ -64,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Price Sell: "
-            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
             android:textSize="16sp" />
         <TextView
             android:id="@+id/textView_transaction_price"
@@ -78,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Quantity: "
-            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
             android:textSize="16sp" />
         <TextView
             android:id="@+id/textView_sell_quantity"
@@ -98,8 +98,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Time: "
-            android:textColor="@color/colorPrimary"
+            android:text="Total value: "
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
             android:textSize="16sp" />
         <TextView
             android:id="@+id/textView_transaction_value"

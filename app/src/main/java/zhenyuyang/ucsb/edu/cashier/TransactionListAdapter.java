@@ -31,21 +31,16 @@ public class TransactionListAdapter extends ArrayAdapter<Transaction> {
         TextView textView_transaction_price = (TextView) rowView.findViewById(R.id.textView_transaction_price);
         TextView textView_sell_quantity = (TextView) rowView.findViewById(R.id.textView_sell_quantity);
         TextView textView_transaction_time = (TextView) rowView.findViewById(R.id.textView_transaction_time);
+        TextView textView_transaction_value = (TextView) rowView.findViewById(R.id.textView_transaction_value);
 
         Item item = ItemManager.getInstance().findItemById(transactions[position].getItemID(),context);
 
         textView_item_name.setText(item.getName());
         textView_item_ID.setText(""+transactions[position].getItemID());
-        textView_transaction_price.setText(""+transactions[position].getPriceSell());
+        textView_transaction_price.setText(""+transactions[position].getTransactionPrice());
         textView_sell_quantity.setText(""+transactions[position].getQuantity());
-        textView_transaction_time.setText(""+transactions[position].getTime());
-        // change the icon for Windows and iPhone
-//        String s = values[position];
-//        if (s.startsWith("iPhone")) {
-//            imageView.setImageResource(R.drawable.no);
-//        } else {
-//            imageView.setImageResource(R.drawable.ok);
-//        }
+        textView_transaction_time.setText(""+transactions[position].getFormatedTime());
+        textView_transaction_value.setText(""+ String.format("%.2f",transactions[position].getTransactionValue()));
 
         return rowView;
     }

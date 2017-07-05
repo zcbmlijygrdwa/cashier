@@ -35,8 +35,8 @@ import permissions.dispatcher.OnPermissionDenied;
 import permissions.dispatcher.RuntimePermissions;
 
 @RuntimePermissions
-public class MainActivity extends AppCompatActivity{
-//    private static List<Item> items;
+public class MainActivity extends AppCompatActivity {
+    //    private static List<Item> items;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity{
         findViewById(R.id.button_scanActivity).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),ScanActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ScanActivity.class);
                 startActivity(intent);
             }
         });
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity{
         findViewById(R.id.button_recordActivity).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),RecordActivity.class);
+                Intent intent = new Intent(getApplicationContext(), RecordActivity.class);
                 startActivity(intent);
             }
         });
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity{
         findViewById(R.id.button_itemGalleryActivity).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),ItemGalleryActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ItemGalleryActivity.class);
                 startActivity(intent);
             }
         });
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity{
         findViewById(R.id.button_transactionGalleryActivity).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),TransactionGalleryActivity.class);
+                Intent intent = new Intent(getApplicationContext(), TransactionGalleryActivity.class);
                 startActivity(intent);
             }
         });
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity{
         findViewById(R.id.button_settingsActivity).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),SettingsActivity.class);
+                Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
                 startActivity(intent);
             }
         });
@@ -96,28 +96,62 @@ public class MainActivity extends AppCompatActivity{
         MainActivityPermissionsDispatcher.getPermissionWithCheck(this);
 
         //test zone
-
-//        items = new ArrayList<Item>();
-
-        ItemManager.getInstance().createItem("11226,Danshanzhanshui2,12.0,75.5\n",this);
-//        ItemManager.getInstance().createItem("513,ytr,52.0,65.2\n",this);
-//        Item item =  ItemManager.getInstance().findItemById("512",this);
-//        Log.i("Item","item = "+item);
+//        ItemManager.getInstance().deleteData(getApplicationContext());
+//        TransactionManager.getInstance().deleteData(getApplicationContext());
 
 
-        //ItemManager.getInstance().deleteData(this);
         ItemManager.getInstance().printAllItems(this);
-
-
-
-        //TransactionManager.getInstance().deleteData(this);
         TransactionManager.getInstance().printAllTransactions(this);
+
+//        List<Item> items = ItemManager.getInstance().getAllItems(this);
+//        String output = "";
+//        for (int i = 0; i < items.size(); i++) {
+//            output += items.get(i).toString() + ";";
+//        }
+//
+//        List<Transaction> transactions = TransactionManager.getInstance().getAllTransactions(this);
+//        String output2 = "";
+//        for (int i = 0; i < transactions.size(); i++) {
+//            output2 += transactions.get(i).toTransactionStringWithoutNewLine() + ";";
+//        }
+//        String[] sub_splits = output2.split(";");
+//
+//        String query = "backupt@" + output2;
+//        Client myClient = new Client(SettingsManager.getInstance().getServerAddress(), SettingsManager.getInstance().getServerPort(), query);
+//        myClient.execute();
+//        myClient.setOnServerRespondedListener(new Client.onServerRespondedListener() {
+//            @Override
+//            public void onServerResponded(String response) {
+//                if (response.equals("3")) {
+//                    Toast.makeText(getApplicationContext(), "Transactions Backup Finished", Toast.LENGTH_SHORT).show();
+//
+//
+//                    List<Item> items = ItemManager.getInstance().getAllItems(getApplicationContext());
+//                    String output = "";
+//                    for (int i = 0; i < items.size(); i++) {
+//                        output += items.get(i).toString() + ";";
+//                    }
+//                    String query = "backupi@" + output;
+//                    Client myClient = new Client(SettingsManager.getInstance().getServerAddress(), SettingsManager.getInstance().getServerPort(), query);
+//                    myClient.execute();
+//                    myClient.setOnServerRespondedListener(new Client.onServerRespondedListener() {
+//                        @Override
+//                        public void onServerResponded(String response) {
+//                            if (response.equals("4")) {
+//                                Toast.makeText(getApplicationContext(), "Item Backup Finished", Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//                    });
+//                }
+//            }
+//        });
+
 
         //end of test zone
     }
 
     @NeedsPermission(android.Manifest.permission.CAMERA)
-     void getPermission(){
+    void getPermission() {
         Toast.makeText(this, "getPermission", Toast.LENGTH_SHORT).show();
     }
 

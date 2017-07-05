@@ -7,19 +7,11 @@
     android:orientation="vertical"
     tools:context="zhenyuyang.ucsb.edu.cashier.RecordActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView_response"
-        android:textSize="20sp"
-        android:text="Nothing to read." />
-
     <com.journeyapps.barcodescanner.BarcodeView
         android:layout_width="320dp"
         android:layout_height="240dp"
-        android:id="@+id/barcode_scanner"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="0dp" />
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/barcode_scanner" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,18 +59,33 @@
             android:textColor="@color/colorAccent"
             android:text="New item price" />
         <EditText
-            android:id="@+id/editText_newPrice"
+            android:id="@+id/editText_newPriceIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="new price" />
+            android:hint="Price In" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/colorAccent"
+            android:text="New item price" />
+        <EditText
+            android:id="@+id/editText_newPriceStandard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Price Standard" />
     </LinearLayout>
 
     <Button
         android:id="@+id/button_submit_new_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="manual query"
-        tools:layout_editor_absoluteX="126dp"
-        tools:layout_editor_absoluteY="62dp" />
+        android:text="Create Item" />
 
 </LinearLayout>

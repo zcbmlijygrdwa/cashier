@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="zhenyuyang.ucsb.edu.cashier.SettingsActivity">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="Backup Data" />
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,6 +32,7 @@
             android:hint="server address" />
     </LinearLayout>
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,6 +49,31 @@
             android:layout_height="wrap_content"
             android:hint="server port" />
     </LinearLayout>
+    <Button
+        android:id="@+id/button_backup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BACKUP" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/darker_gray"/>
+
+    <Button
+        android:id="@+id/button_clear_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Clear Database" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/darker_gray"/>
 
     <Button
         android:id="@+id/button_finish_settings"
