@@ -22,6 +22,12 @@
         android:text="Record" />
 
     <Button
+        android:id="@+id/button_itemGalleryActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Item Gallery" />
+
+    <Button
         android:id="@+id/button_settingsActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

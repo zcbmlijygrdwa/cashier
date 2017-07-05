@@ -69,6 +69,14 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
+        findViewById(R.id.button_itemGalleryActivity).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),ItemGalleryActivity.class);
+                startActivity(intent);
+            }
+        });
+
         findViewById(R.id.button_settingsActivity).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,12 +87,11 @@ public class MainActivity extends AppCompatActivity{
 
         MainActivityPermissionsDispatcher.getPermissionWithCheck(this);
 
-
         //test zone
 
 //        items = new ArrayList<Item>();
 
-        ItemManager.getInstance().createItem("512,ytr,52.0,65.2\n",this);
+        ItemManager.getInstance().createItem("11225,Danshanzhanshui,12.0,75.2\n",this);
 //        ItemManager.getInstance().createItem("513,ytr,52.0,65.2\n",this);
 //        Item item =  ItemManager.getInstance().findItemById("512",this);
 //        Log.i("Item","item = "+item);

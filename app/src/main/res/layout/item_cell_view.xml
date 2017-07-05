@@ -1,0 +1,76 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="6dip" >
+
+
+
+    <TextView
+        android:id="@+id/textView_item_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Example application"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"/>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ID = "
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/textView_item_ID"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="ID"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price in = "
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/textView_priceIn"
+            android:layout_width="wrap_content"
+            android:layout_height="26dip"
+            android:layout_weight="1"
+            android:text="Description"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price standard = "
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/textView_priceStandard"
+            android:layout_width="wrap_content"
+            android:layout_height="26dip"
+            android:layout_weight="1"
+            android:text="Description"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

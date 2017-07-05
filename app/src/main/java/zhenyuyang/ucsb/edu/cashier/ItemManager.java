@@ -42,9 +42,7 @@ public class ItemManager {
 
     public void updateItemList(Context context){
         items.clear();
-
         String line = "";
-
         try {
             InputStream inputStream = context.openFileInput("itemdata.txt");
 
@@ -52,29 +50,13 @@ public class ItemManager {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
                 String receiveString = "";
-                StringBuilder stringBuilder = new StringBuilder();
-
                 while ( (receiveString = bufferedReader.readLine()) != null ) {
-//                    stringBuilder.append(receiveString).append("\n");
                     line = receiveString;
-                    //Log.e("login activity", "ret = "+line);
-                    // process the line.
-                    //System.out.println (line);
                     String[] splits = line.split(",");
-                    //System.out.println (splits.length);
                     Item item = new Item(splits[0],splits[1],Float.parseFloat(splits[2]),Float.parseFloat(splits[2]));
                     items.add(item);
                 }
-
                 inputStream.close();
-//                line = stringBuilder.toString();
-//                //Log.e("login activity", "ret = "+line);
-//                // process the line.
-//                //System.out.println (line);
-//                String[] splits = line.split(",");
-//                //System.out.println (splits.length);
-//                Item item = new Item(splits[0],splits[1],Float.parseFloat(splits[2]),Float.parseFloat(splits[2]));
-//                items.add(item);
             }
         }
         catch (FileNotFoundException e) {
@@ -101,24 +83,6 @@ public class ItemManager {
                 outputStreamWriter.append(itemString);
                 outputStreamWriter.flush();
                 outputStreamWriter.close();
-
-
-
-//                File out;
-//                OutputStreamWriter outStreamWriter = null;
-//                FileOutputStream outStream = null;
-//
-//                out = new File(new File(""), "itemdata.txt");
-//
-//                if ( out.exists() == false ){
-//                    out.createNewFile();
-//                }
-//
-//                outStream = new FileOutputStream(out, true);
-//                outStreamWriter = new OutputStreamWriter(outStream);
-//
-//                outStreamWriter.append(itemString);
-//                outStreamWriter.flush();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -134,7 +98,6 @@ public class ItemManager {
                 return items.get(i);
                 //return items.get(i).toString();
             }
-
         }
         System.out.println ("Nothing found.");
         return null;
@@ -148,17 +111,13 @@ public class ItemManager {
         }
     }
 
-    public void deleteData(Context context){
+    public List<Item> getAllItems(Context context){
+        updateItemList(context);;
+        return items;
+    }
 
+    public void deleteData(Context context){
         //to delete File
         context.deleteFile("itemdata.txt");
-//        File fdelete = new File("itemdata.txt");
-//        if (fdelete.exists()) {
-//            if (fdelete.delete()) {
-//                System.out.println("file Deleted ");
-//            } else {
-//                System.out.println("file not Deleted :");
-//            }
-//        }
     }
 }
