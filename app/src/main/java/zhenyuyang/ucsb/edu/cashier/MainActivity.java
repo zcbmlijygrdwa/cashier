@@ -77,6 +77,14 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
+        findViewById(R.id.button_transactionGalleryActivity).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),TransactionGalleryActivity.class);
+                startActivity(intent);
+            }
+        });
+
         findViewById(R.id.button_settingsActivity).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,7 +99,7 @@ public class MainActivity extends AppCompatActivity{
 
 //        items = new ArrayList<Item>();
 
-        ItemManager.getInstance().createItem("11226,Danshanzhanshui2,12.0,75.2\n",this);
+        ItemManager.getInstance().createItem("11226,Danshanzhanshui2,12.0,75.5\n",this);
 //        ItemManager.getInstance().createItem("513,ytr,52.0,65.2\n",this);
 //        Item item =  ItemManager.getInstance().findItemById("512",this);
 //        Log.i("Item","item = "+item);
@@ -102,7 +110,7 @@ public class MainActivity extends AppCompatActivity{
 
 
 
-
+        //TransactionManager.getInstance().deleteData(this);
         TransactionManager.getInstance().printAllTransactions(this);
 
         //end of test zone

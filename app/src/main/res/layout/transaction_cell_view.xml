@@ -1,0 +1,112 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="6dip" >
+
+
+
+    <TextView
+        android:id="@+id/textView_item_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Example application"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"/>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ID: "
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/textView_item_ID"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="ID"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time: "
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/textView_transaction_time"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Time"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price Sell: "
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/textView_transaction_price"
+            android:layout_width="wrap_content"
+            android:layout_height="26dip"
+            android:layout_weight="1"
+            android:text="priceSell"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quantity: "
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/textView_sell_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="26dip"
+            android:layout_weight="1"
+            android:text="Quantity"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time: "
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/textView_transaction_value"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Total value"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</LinearLayout>

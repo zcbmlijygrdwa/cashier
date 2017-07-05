@@ -32,6 +32,13 @@
         android:text="Item Gallery" />
 
     <Button
+        android:id="@+id/button_transactionGalleryActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:text="Transaction Gallery" />
+
+    <Button
         android:id="@+id/button_settingsActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

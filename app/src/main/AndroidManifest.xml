@@ -39,7 +39,8 @@
         <activity android:name=".ScanActivity" />
         <activity android:name=".RecordActivity" />
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".ItemGalleryActivity"></activity>
+        <activity android:name=".ItemGalleryActivity" />
+        <activity android:name=".TransactionGalleryActivity"></activity>
     </application>
 
 </manifest>

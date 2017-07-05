@@ -44,8 +44,24 @@ public class Transaction {
         return transactionNumber;
     }
 
+    public String getItemID(){
+        return itemID;
+    }
+
+    public float getPriceSell() {
+    return priceSell;
+    }
+
+    public String getTime(){
+        return time;
+    }
+
+    public int getQuantity(){
+        return quantity;
+    }
+
     public String toTransactionString(){
-        return transactionNumber+","+itemID+","+quantity+","+priceSell+","+time;
+        return transactionNumber+","+itemID+","+quantity+","+priceSell+","+time+"\n";
     }
 
     public String toString(){

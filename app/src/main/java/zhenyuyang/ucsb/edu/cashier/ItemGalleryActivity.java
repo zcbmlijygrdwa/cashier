@@ -13,7 +13,6 @@ public class ItemGalleryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_item_gallery);
 
 
-        String[] testS = new String[2];
         ItemListAdapter adapter = new ItemListAdapter(this,  (ItemManager.getInstance().getAllItems(this).toArray(new Item[ItemManager.getInstance().getAllItems(this).size()])));
         ((ListView)findViewById(R.id.listView_item_gallery)).setAdapter(adapter);
     }
