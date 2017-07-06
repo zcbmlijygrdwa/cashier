@@ -96,9 +96,8 @@ public class ScanActivity extends AppCompatActivity implements Client.onServerRe
                     TransactionManager.getInstance().createTransaction(item.getID(), (int) clickNumberPickerView_sell_quantity.getValue(), clickNumberPickerView_sell_price.getValue(), getApplicationContext());
 
                     beepManager.playBeepSoundAndVibrate();
-//                myClient = new Client(SettingsManager.getInstance().getServerAddress(), SettingsManager.getInstance().getServerPort(),((EditText)findViewById(R.id.editText)).getText().toString());
-//                myClient.setOnServerRespondedListener(activity);
-//                myClient.execute();
+                    Toast.makeText(getApplicationContext(),(int) clickNumberPickerView_sell_quantity.getValue()+" of "+item.getName()+" checked out!", Toast.LENGTH_SHORT).show();
+                    restoreUI();
                 }
                 else{
                     Toast.makeText(getApplicationContext(),"Check-out failed, cannot find the item in database", Toast.LENGTH_SHORT).show();
@@ -127,6 +126,7 @@ public class ScanActivity extends AppCompatActivity implements Client.onServerRe
         callback = new BarcodeCallback() {
             @Override
             public void barcodeResult(BarcodeResult result) {
+                beepManager.playBeepSoundAndVibrate();
                 if(result.getText() == null || result.getText().equals(lastText)) {
                     // Prevent duplicate scans
                     return;
@@ -134,6 +134,18 @@ public class ScanActivity extends AppCompatActivity implements Client.onServerRe
                 lastText = result.getText();
                 ((TextView)findViewById(R.id.textView_response)).setText(result.getText());
 
+
+                Item item = ItemManager.getInstance().findItemById(textView_response.getText().toString(),getApplicationContext());
+                if(item!=null) {
+                    textView_response_item_price_in.setText(item.getPriceIn()+"");
+                    textView_response_item_price_standard.setText(item.getPriceStandard()+"");
+                    clickNumberPickerView_sell_price.setPickerValue(item.getPriceStandard());
+                    clickNumberPickerView_sell_quantity.setPickerValue(1.0f);
+                    textView_item_name.setText(item.getName()+"");
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"Check-out failed, cannot find the item in database", Toast.LENGTH_SHORT).show();
+                }
 //                //query bar code from the server
 //                //String query  = "fetch:"+lastText;
 //                String query  = "sell:"+lastText+","+sellQuantity;
@@ -150,7 +162,7 @@ public class ScanActivity extends AppCompatActivity implements Client.onServerRe
         barcodeView = (BarcodeView) findViewById(R.id.barcode_scanner);
         barcodeView.decodeContinuous(callback);
         beepManager = new BeepManager(this);
-
+        restoreUI();
 
         //fakeDetection();
     }
@@ -205,5 +217,14 @@ public class ScanActivity extends AppCompatActivity implements Client.onServerRe
         textView_response_item_price_standard.setText(item.getPriceStandard()+"");
         clickNumberPickerView_sell_price.setPickerValue(item.getPriceStandard());
         textView_item_name.setText(item.getName()+"");
+    }
+
+    public void restoreUI(){
+        textView_response.setText("???????");
+        textView_response_item_price_in.setText("Price In");
+        textView_response_item_price_standard.setText("Price Standard");
+        clickNumberPickerView_sell_price.setPickerValue(0.0f);
+        clickNumberPickerView_sell_quantity.setPickerValue(1.0f);
+        textView_item_name.setText("???????");
     }
 }

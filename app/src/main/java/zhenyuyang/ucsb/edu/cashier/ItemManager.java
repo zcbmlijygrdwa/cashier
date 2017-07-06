@@ -3,6 +3,7 @@ package zhenyuyang.ucsb.edu.cashier;
 import android.*;
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -72,7 +73,8 @@ public class ItemManager {
         String[] splits = itemString.split(",");
         Item tempItem = findItemById(splits[0],context);
         if(tempItem!=null){
-            System.out.println("A new item creation failed: Duplicated item");
+            //System.out.println("A new item creation failed: Duplicated item");
+            Toast.makeText(context,"A new item creation failed: Duplicated item", Toast.LENGTH_SHORT).show();
         }
         else{
             String FILENAME = "";
@@ -87,6 +89,7 @@ public class ItemManager {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            Toast.makeText(context,"New item: "+splits[1]+" created!", Toast.LENGTH_SHORT).show();
             updateItemList(context);
         }
     }

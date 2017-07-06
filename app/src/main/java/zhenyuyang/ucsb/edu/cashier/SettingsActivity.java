@@ -59,7 +59,7 @@ public class SettingsActivity extends AppCompatActivity {
                             List<Item> items = ItemManager.getInstance().getAllItems(getApplicationContext());
                             String output = "";
                             for (int i = 0; i < items.size(); i++) {
-                                output += items.get(i).toString() + ";";
+                                output += items.get(i).toSellString() + ";";
                             }
                             String query = "backupi@" + output;
                             Client myClient = new Client(SettingsManager.getInstance().getServerAddress(), SettingsManager.getInstance().getServerPort(), query);

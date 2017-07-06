@@ -26,7 +26,6 @@ public class RecordActivity extends AppCompatActivity implements Client.onServer
     private RecordActivity activity;
     private Client myClient;
 
-    private TextView textView_response;
     private Button button_submit_new_item;
 
     private BarcodeCallback callback;
@@ -36,7 +35,6 @@ public class RecordActivity extends AppCompatActivity implements Client.onServer
         setContentView(R.layout.activity_record);
 
         activity = this;
-        textView_response = (TextView)findViewById(R.id.textView_response);
 
         button_submit_new_item = (Button) findViewById(R.id.button_submit_new_item);
 
@@ -55,6 +53,8 @@ public class RecordActivity extends AppCompatActivity implements Client.onServer
                     (itemID.trim().length()>0)&&(itemName.trim().length()>0)&&(newPriceIn.trim().length()>0)&&(newPriceStandard.trim().length()>0)){
                     String query = itemID + "," + itemName + "," + newPriceIn + "," + newPriceStandard;
                     ItemManager.getInstance().createItem(query + "\n", getApplicationContext());
+                    beepManager.playBeepSoundAndVibrate();
+                    restoreUI();
                 }
                 else {
 
@@ -66,6 +66,7 @@ public class RecordActivity extends AppCompatActivity implements Client.onServer
         callback = new BarcodeCallback() {
             @Override
             public void barcodeResult(BarcodeResult result) {
+                beepManager.playBeepSoundAndVibrate();
                 if(result.getText() == null || result.getText().equals(lastText)) {
                     // Prevent duplicate scans
                     return;
@@ -83,18 +84,20 @@ public class RecordActivity extends AppCompatActivity implements Client.onServer
         barcodeView = (BarcodeView) findViewById(R.id.barcode_scanner);
         barcodeView.decodeContinuous(callback);
         beepManager = new BeepManager(this);
+
+        restoreUI();
     }
     @Override
     public void onServerResponded(String response) {
 
-        if(!response.equals("-1")) {
-            textView_response.setText(response);
-        }
-        else{
-           textView_response.setText("A new item creation failed: Duplicated item");
-        }
-        beepManager.playBeepSoundAndVibrate();
-        button_submit_new_item.setEnabled(true);
+//        if(!response.equals("-1")) {
+//            textView_response.setText(response);
+//        }
+//        else{
+//           textView_response.setText("A new item creation failed: Duplicated item");
+//        }
+////        beepManager.playBeepSoundAndVibrate();
+//        button_submit_new_item.setEnabled(true);
     }
 
 
@@ -127,6 +130,13 @@ public class RecordActivity extends AppCompatActivity implements Client.onServer
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         return barcodeView.onKeyDown(keyCode, event) || super.onKeyDown(keyCode, event);
+    }
+
+    public void restoreUI(){
+        ((EditText)findViewById(R.id.editText_newID)).setText("");
+        ((EditText)findViewById(R.id.editText_newName)).setText("");
+        ((EditText)findViewById(R.id.editText_newPriceIn)).setText("");
+        ((EditText)findViewById(R.id.editText_newPriceStandard)).setText("");
     }
 }
 
