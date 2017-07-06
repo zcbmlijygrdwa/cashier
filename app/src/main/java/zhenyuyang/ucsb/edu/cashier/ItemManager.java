@@ -27,7 +27,16 @@ import permissions.dispatcher.NeedsPermission;
 public class ItemManager {
     private static ItemManager instance = null;
     private static List<Item> items;
+    private OnItemDataChangedListener onItemDataChangedListener;
 
+    public interface OnItemDataChangedListener{
+        public void onItemDataChanged(List<Item> items);
+    }
+
+
+    public void setOnItemDataChangedListener(OnItemDataChangedListener onItemDataChangedListener){
+        this.onItemDataChangedListener = onItemDataChangedListener;
+    }
 
     public static ItemManager getInstance(){
         if(instance==null){
@@ -107,6 +116,34 @@ public class ItemManager {
         return null;
     }
 
+
+    public void setItem(Item item, Context context){
+        updateItemList(context);
+        for(int i = 0; i<items.size();i++){
+            if(items.get(i).getID().equals(item.getID())){
+                items.set(i,item);
+                saveData(context);
+                System.out.println ("Found data: "+items.get(i).toString());
+                Toast.makeText(context,"Set item succeed!", Toast.LENGTH_SHORT).show();
+                break;
+            }
+        }
+    }
+
+
+    public void removeItem(Item item, Context context){
+        updateItemList(context);
+        for(int i = 0; i<items.size();i++){
+            if(items.get(i).getID().equals(item.getID())){
+                items.remove(i);
+                saveData(context);
+                Toast.makeText(context,"Set item succeed!", Toast.LENGTH_SHORT).show();
+                break;
+            }
+        }
+        Toast.makeText(context,"Set item failed!", Toast.LENGTH_SHORT).show();
+    }
+
     public void printAllItems(Context context){
         updateItemList(context);
         for(int i = 0; i<items.size();i++){
@@ -116,12 +153,35 @@ public class ItemManager {
     }
 
     public List<Item> getAllItems(Context context){
-        updateItemList(context);;
+        updateItemList(context);
         return items;
     }
 
     public void deleteData(Context context){
         //to delete File
         context.deleteFile("itemdata.txt");
+    }
+
+
+    public void saveData(Context context){
+        deleteData(context);
+
+            String FILENAME = "";
+            BufferedWriter bw = null;
+            FileWriter fw = null;
+
+            try {
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("itemdata.txt", Context.MODE_APPEND));
+                for(int i = 0 ; i<items.size();i++) {
+                    String itemString = items.get(i).toSellStringWithNewLine();
+                    outputStreamWriter.append(itemString);
+                }
+                outputStreamWriter.flush();
+                outputStreamWriter.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Toast.makeText(context,"All items written into database", Toast.LENGTH_SHORT).show();
+        onItemDataChangedListener.onItemDataChanged(items);
     }
 }

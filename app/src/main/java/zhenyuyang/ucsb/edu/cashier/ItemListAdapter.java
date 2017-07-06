@@ -14,12 +14,17 @@ import android.widget.TextView;
 
 public class ItemListAdapter extends ArrayAdapter<Item> {
     private final Context context;
-    private final Item[] items;
+    private Item[] items;
 
     public ItemListAdapter(Context context, Item[] items) {
         super(context, -1, items);
         this.context = context;
         this.items = items;
+    }
+
+    public void setItems(Item[] items){
+        this.items = items;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -46,5 +51,10 @@ public class ItemListAdapter extends ArrayAdapter<Item> {
 //        }
 
         return rowView;
+    }
+
+    @Override
+    public int getCount() {
+        return items.length;
     }
 }

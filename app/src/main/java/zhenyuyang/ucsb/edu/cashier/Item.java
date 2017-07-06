@@ -60,4 +60,8 @@ class Item {
         return ID+","+name+","+priceIn+","+priceStandard;
     }
 
+    public String toSellStringWithNewLine(){
+        return ID+","+name+","+priceIn+","+priceStandard+"\n";
+    }
+
 }

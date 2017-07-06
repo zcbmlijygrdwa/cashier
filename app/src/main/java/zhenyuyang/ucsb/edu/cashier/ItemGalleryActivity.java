@@ -9,8 +9,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class ItemGalleryActivity extends AppCompatActivity {
     private  ListView listView;
+    private ItemListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +21,7 @@ public class ItemGalleryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_item_gallery);
 
 
-        ItemListAdapter adapter = new ItemListAdapter(this,  (ItemManager.getInstance().getAllItems(this).toArray(new Item[ItemManager.getInstance().getAllItems(this).size()])));
+        adapter = new ItemListAdapter(this,  (ItemManager.getInstance().getAllItems(this).toArray(new Item[ItemManager.getInstance().getAllItems(this).size()])));
         listView = ((ListView)findViewById(R.id.listView_item_gallery));
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -28,6 +31,13 @@ public class ItemGalleryActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),ItemDetailActivity.class);
                 intent.putExtra("item_ID",item_ID);
                 startActivity(intent);
+            }
+        });
+
+        ItemManager.getInstance().setOnItemDataChangedListener(new ItemManager.OnItemDataChangedListener() {
+            @Override
+            public void onItemDataChanged(List<Item> items) {
+                adapter.setItems(items.toArray(new Item[items.size()]));
             }
         });
     }
