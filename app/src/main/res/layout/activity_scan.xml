@@ -30,7 +30,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Barcode detected:"
+        android:text="条形码:"
         android:textStyle="bold"
         android:textSize="16sp" />
 
@@ -44,7 +44,7 @@
         android:id="@+id/button_refresh_barcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="刷新" />
 
     </LinearLayout>
 
@@ -56,7 +56,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PriceIn: "
+            android:text="进价: "
             android:textStyle="bold"
             android:textSize="16sp" />
         <TextView
@@ -70,7 +70,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PriceStandard: "
+            android:text="标准价: "
             android:textStyle="bold"
             android:textSize="16sp" />
         <TextView
@@ -84,7 +84,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total: "
+            android:text="总价: "
             android:textColor="@color/colorAccent"
             android:textStyle="bold"
             android:textSize="16sp" />
@@ -109,7 +109,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
-                android:text="Sell Price:"
+                android:text="实售:"
                 android:textStyle="bold"
                 />
 
@@ -132,7 +132,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
-                android:text="Sell Quantity:"
+                android:text="数量:"
                 android:textStyle="bold"
                 />
 
@@ -158,6 +158,6 @@
         android:id="@+id/button_manual_query"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Submit" />
+        android:text="提交" />
 
 </LinearLayout>

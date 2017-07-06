@@ -25,7 +25,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ID: "
+            android:text="条形码: "
             android:textStyle="bold"
             android:textSize="16sp" />
         <TextView
@@ -44,7 +44,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Price in: "
+            android:text="进价: "
             android:textStyle="bold"
             android:textSize="16sp" />
         <TextView
@@ -52,13 +52,13 @@
             android:layout_width="wrap_content"
             android:layout_height="26dip"
             android:layout_weight="1"
-            android:text="Description"
+            android:text="@string/unknown"
             android:textSize="12sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Price standard: "
+            android:text="标准价: "
             android:textStyle="bold"
             android:textSize="16sp" />
         <TextView
@@ -66,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="26dip"
             android:layout_weight="1"
-            android:text="Description"
+            android:text="@string/unknown"
             android:textSize="12sp" />
     </LinearLayout>
 

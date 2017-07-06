@@ -15,34 +15,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
-        android:text="Scan" />
+        android:text="收银" />
 
     <Button
         android:id="@+id/button_recordActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
-        android:text="Record" />
+        android:text="录入新商品" />
 
     <Button
         android:id="@+id/button_itemGalleryActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
-        android:text="Item Gallery" />
+        android:text="浏览所有在库商品" />
 
     <Button
         android:id="@+id/button_transactionGalleryActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
-        android:text="Transaction Gallery" />
+        android:text="浏览所有销售记录" />
 
     <Button
         android:id="@+id/button_settingsActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
-        android:text="Settings" />
+        android:text="设置" />
 
 </LinearLayout>

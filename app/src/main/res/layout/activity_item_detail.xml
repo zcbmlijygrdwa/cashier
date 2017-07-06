@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textColor="@color/colorAccent"
-            android:text="Name" />
+            android:text="商品名" />
         <EditText
             android:id="@+id/editText_Name"
             android:layout_width="match_parent"
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textColor="@color/colorAccent"
-            android:text="Price in" />
+            android:text="进价" />
         <EditText
             android:id="@+id/editText_PriceIn"
             android:layout_width="match_parent"
@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textColor="@color/colorAccent"
-                android:text="Price Standard" />
+                android:text="标准价" />
             <EditText
                 android:id="@+id/editText_PriceStandard"
                 android:layout_width="match_parent"
@@ -70,12 +70,12 @@
         android:id="@+id/button_ok"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="OK" />
+        android:text="确定" />
     <Button
         android:id="@+id/button_item_delete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/holo_red_light"
-        android:text="Delete" />
+        android:text="删除本商品" />
 
 </LinearLayout>

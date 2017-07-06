@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textColor="@color/colorAccent"
-            android:text="New item ID" />
+            android:text="条形码" />
         <EditText
             android:id="@+id/editText_newID"
             android:layout_width="match_parent"
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textColor="@color/colorAccent"
-            android:text="New item name" />
+            android:text="商品名" />
         <EditText
             android:id="@+id/editText_newName"
             android:layout_width="match_parent"
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textColor="@color/colorAccent"
-            android:text="New item price" />
+            android:text="进价" />
         <EditText
             android:id="@+id/editText_newPriceIn"
             android:layout_width="match_parent"
@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textColor="@color/colorAccent"
-            android:text="New item price" />
+            android:text="标准价" />
         <EditText
             android:id="@+id/editText_newPriceStandard"
             android:layout_width="match_parent"
@@ -84,8 +84,8 @@
 
     <Button
         android:id="@+id/button_submit_new_item"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create Item" />
+        android:text="创建商品" />
 
 </LinearLayout>
