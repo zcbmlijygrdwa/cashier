@@ -40,7 +40,8 @@
         <activity android:name=".RecordActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".ItemGalleryActivity" />
-        <activity android:name=".TransactionGalleryActivity"></activity>
+        <activity android:name=".TransactionGalleryActivity" />
+        <activity android:name=".ItemDetailActivity"></activity>
     </application>
 
 </manifest>
