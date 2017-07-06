@@ -31,14 +31,18 @@ public class ScanActivity extends AppCompatActivity implements Client.onServerRe
     private ScanActivity activity;
     private Client myClient;
     private int sellQuantity = 0;
+    private float totalPrice = 0;
 
     private TextView textView_pick_number;
     private EditText textView_response;
     private TextView textView_response_item_price_in;
     private TextView textView_response_item_price_standard;
     private TextView textView_item_name;
+    private TextView textView_response_total_price;
     private ClickNumberPickerView clickNumberPickerView_sell_price;
     private ClickNumberPickerView clickNumberPickerView_sell_quantity;
+
+    private boolean ifNewDetection = true;
 
 
     private NumberPicker np;
@@ -55,6 +59,7 @@ public class ScanActivity extends AppCompatActivity implements Client.onServerRe
         textView_response_item_price_in = (TextView)findViewById(R.id.textView_response_item_price_in);
         textView_response_item_price_standard = (TextView)findViewById(R.id.textView_response_item_price_standard);
         textView_item_name = (TextView)findViewById(R.id.textView_item_name);
+        textView_response_total_price = (TextView)findViewById(R.id.textView_response_total_price);
         //textView_pick_number = (TextView)findViewById(R.id.textView_pick_number);
 
 
@@ -97,7 +102,10 @@ public class ScanActivity extends AppCompatActivity implements Client.onServerRe
 
                     beepManager.playBeepSoundAndVibrate();
                     Toast.makeText(getApplicationContext(),(int) clickNumberPickerView_sell_quantity.getValue()+" of "+item.getName()+" checked out!", Toast.LENGTH_SHORT).show();
+                    totalPrice+=(int) clickNumberPickerView_sell_quantity.getValue()*clickNumberPickerView_sell_price.getValue();
+                    textView_response_total_price.setText(totalPrice+"");
                     restoreUI();
+                    ifNewDetection = true;
                 }
                 else{
                     Toast.makeText(getApplicationContext(),"Check-out failed, cannot find the item in database", Toast.LENGTH_SHORT).show();
@@ -127,10 +135,11 @@ public class ScanActivity extends AppCompatActivity implements Client.onServerRe
             @Override
             public void barcodeResult(BarcodeResult result) {
                 beepManager.playBeepSoundAndVibrate();
-                if(result.getText() == null || result.getText().equals(lastText)) {
+                if(result.getText() == null || (!ifNewDetection&&result.getText().equals(lastText))) {
                     // Prevent duplicate scans
                     return;
                 }
+                ifNewDetection = false;
                 lastText = result.getText();
                 ((TextView)findViewById(R.id.textView_response)).setText(result.getText());
 

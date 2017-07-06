@@ -48,7 +48,7 @@ public class ItemDetailActivity extends AppCompatActivity {
                 Item tempI = new Item(item.getID(),
                         editText_Name.getText().toString(),
                         Float.parseFloat(editText_PriceIn.getText().toString()),
-                        (int)Float.parseFloat(editText_PriceStandard.getText().toString()));
+                        Float.parseFloat(editText_PriceStandard.getText().toString()));
                 ItemManager.getInstance().setItem(tempI,getApplicationContext());
                 finish();
             }

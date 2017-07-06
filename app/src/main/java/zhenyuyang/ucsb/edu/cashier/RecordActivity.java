@@ -1,6 +1,7 @@
 package zhenyuyang.ucsb.edu.cashier;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -29,12 +30,27 @@ public class RecordActivity extends AppCompatActivity implements Client.onServer
     private Button button_submit_new_item;
 
     private BarcodeCallback callback;
+
+    private EditText editText_newID;
+    private EditText editText_newName;
+    private EditText editText_newPriceIn;
+    private EditText editText_newPriceStandard;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record);
 
         activity = this;
+
+
+        editText_newID = (EditText)findViewById(R.id.editText_newID);
+        editText_newName = (EditText)findViewById(R.id.editText_newName);
+        editText_newPriceIn = (EditText)findViewById(R.id.editText_newPriceIn);
+        editText_newPriceStandard = (EditText)findViewById(R.id.editText_newPriceStandard);
+
+        editText_newPriceIn.setRawInputType(Configuration.KEYBOARD_12KEY);
+        editText_newPriceStandard.setRawInputType(Configuration.KEYBOARD_12KEY);
 
         button_submit_new_item = (Button) findViewById(R.id.button_submit_new_item);
 
@@ -43,13 +59,15 @@ public class RecordActivity extends AppCompatActivity implements Client.onServer
             public void onClick(View v) {
 
 
-                String itemID = ((EditText)findViewById(R.id.editText_newID)).getText().toString();
-                String itemName = ((EditText)findViewById(R.id.editText_newName)).getText().toString();
-                String newPriceIn = ((EditText)findViewById(R.id.editText_newPriceIn)).getText().toString();
-                String newPriceStandard = ((EditText)findViewById(R.id.editText_newPriceStandard)).getText().toString();
+
+
+                String itemID = editText_newID.getText().toString();
+                String itemName = editText_newName.getText().toString();
+                String newPriceIn = editText_newPriceIn.getText().toString();
+                String newPriceStandard = editText_newPriceStandard.getText().toString();
 
                 if((!itemID.isEmpty()&&!itemName.isEmpty()&&!newPriceIn.isEmpty()&&!newPriceStandard.isEmpty()&&
-                        (android.text.TextUtils.isDigitsOnly(newPriceIn))&&(android.text.TextUtils.isDigitsOnly(newPriceStandard)))&&
+                        (isNumber(newPriceIn))&&(isNumber(newPriceStandard)))&&
                     (itemID.trim().length()>0)&&(itemName.trim().length()>0)&&(newPriceIn.trim().length()>0)&&(newPriceStandard.trim().length()>0)){
                     String query = itemID + "," + itemName + "," + newPriceIn + "," + newPriceStandard;
                     ItemManager.getInstance().createItem(query + "\n", getApplicationContext());
@@ -66,11 +84,12 @@ public class RecordActivity extends AppCompatActivity implements Client.onServer
         callback = new BarcodeCallback() {
             @Override
             public void barcodeResult(BarcodeResult result) {
-                beepManager.playBeepSoundAndVibrate();
+
                 if(result.getText() == null || result.getText().equals(lastText)) {
                     // Prevent duplicate scans
                     return;
                 }
+                beepManager.playBeepSoundAndVibrate();
                 lastText = result.getText();
                 ((EditText)findViewById(R.id.editText_newID)).setText(result.getText());
 
@@ -133,10 +152,21 @@ public class RecordActivity extends AppCompatActivity implements Client.onServer
     }
 
     public void restoreUI(){
-        ((EditText)findViewById(R.id.editText_newID)).setText("");
-        ((EditText)findViewById(R.id.editText_newName)).setText("");
-        ((EditText)findViewById(R.id.editText_newPriceIn)).setText("");
-        ((EditText)findViewById(R.id.editText_newPriceStandard)).setText("");
+        editText_newID.setText("");
+        editText_newName.setText("");
+        editText_newPriceIn.setText("");
+        editText_newPriceStandard.setText("");
+    }
+
+    boolean isNumber(String s){
+        if(s.matches("\\d+(?:\\.\\d+)?"))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
 
